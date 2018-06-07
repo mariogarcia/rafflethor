@@ -1,0 +1,13 @@
+build/
+out/
+
+.idea/
+.gradle/
+
+
+*.iml
+*.class
+
+\#*\#.*
+
+*.pdf

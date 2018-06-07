@@ -1,0 +1,50 @@
+# Base type for Raffles
+interface Raffle {
+  id: String
+  # name of the raffle
+  name: String
+  # How many winners this raffle has
+  noWinners: Int
+}
+
+# A Raffle that pick winners from a Twitter hashtag
+type TwitterRaffle implements Raffle {
+  id: String
+  # name of the raffle
+  name: String
+  # How many winners this raffle has
+  noWinners: Int
+  # When the raffle begins
+  from: String
+  # When the raffle ends
+  until: String
+  # Users Tweeting with this hashTag are eligible to win
+  hashTag: String
+}
+
+# A Raffle that pick winners from a list randomly
+type RandomListRaffle implements Raffle {
+  id: String
+  # name of the raffle
+  name: String
+  # How many winners this raffle has
+  noWinners: Int
+}
+
+type Winner {
+  id: String
+  name: String
+}
+
+# All queries
+type Queries {
+  # list all raffles created by the current user
+  listAllRaffles(max: Int!, offset: Int!): [Raffle]
+
+  # list all winners from a given raffle
+  pickWinners(raffleId: String): [Winner]
+}
+
+schema {
+  query: Queries
+}
