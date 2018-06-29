@@ -17,7 +17,12 @@ export class Sidebar extends React.Component {
                                     </Link>
                                 </li>
                                 <li>
-                                    <Link to='/raffles' aria-expanded={false}><i className="fa fa-bullhorn"></i>
+                                    <Link to='/events' aria-expanded={false}><i className="fa fa-bullhorn"></i>
+                                        <span className="hide-menu">Events </span>
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link to='/raffles' aria-expanded={false}><i className="fa fa-tags"></i>
                                         <span className="hide-menu">Raffles </span>
                                     </Link>
                                 </li>

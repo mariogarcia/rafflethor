@@ -8,7 +8,6 @@ class Config {
         String password
     }
 
-
     static class Twitter {
         String consumerKey
         String consumerSecret
