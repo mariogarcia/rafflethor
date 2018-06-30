@@ -1,14 +1,12 @@
 package io.rafflethor.raffle
 
-import groovy.transform.CompileStatic
-
 /**
  * Base class for all raffles
  *
  * @since 0.1.0
  */
-@CompileStatic
-abstract class Raffle {
+class Raffle {
+
     /**
      * Raffle identifier
      *
@@ -29,6 +27,18 @@ abstract class Raffle {
      * @since 0.1.0
      */
     Integer noWinners
-	
-	Optional d
+
+    /**
+     * Type of the {@link Raffle}
+     *
+     * @since 0.1.0
+     */
+    String type
+
+    /**
+     * {@link Raffle} related information
+     *
+     * @since 0.1.0
+     */
+    Map payload
 }

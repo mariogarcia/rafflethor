@@ -5,6 +5,7 @@ import java.time.LocalDate
 import groovy.util.logging.Slf4j
 
 import io.rafflethor.raffle.Judge
+import io.rafflethor.raffle.Raffle
 import io.rafflethor.raffle.RaffleWinner
 import twitter4j.Query
 import twitter4j.Status
@@ -18,7 +19,7 @@ import twitter4j.User
  * @since 0.1.0
  */
 @Slf4j
-class TwitterJudge implements Judge<TwitterRaffle> {
+class TwitterJudge implements Judge {
 
     /**
      * Default date format for Twitter queries
@@ -36,7 +37,7 @@ class TwitterJudge implements Judge<TwitterRaffle> {
     Twitter twitter
 
     @Override
-    List<RaffleWinner> pickWinners(TwitterRaffle raffle) {
+    List<RaffleWinner> pickWinners(Raffle raffle) {
         log.debug("picking ${raffle.noWinners} winners from raffle, ${raffle.id}")
 
         Query hashTagQuery = new Query(raffle.hashTag)
@@ -50,7 +51,7 @@ class TwitterJudge implements Judge<TwitterRaffle> {
             .take(raffle.noWinners)
     }
 
-    private static Closure<RaffleWinner> toRaffleWinner(TwitterRaffle raffle) {
+    private static Closure<RaffleWinner> toRaffleWinner(Raffle raffle) {
         return { Status status ->
             User user = status.user
 

@@ -1,6 +1,8 @@
 package io.rafflethor.config
 
-class Config {
+import io.rafflethor.init.FlywayAwareConfig
+
+class Config implements FlywayAwareConfig {
 
     static class Database {
         String url
@@ -18,4 +20,6 @@ class Config {
     Database database
 
     Twitter twitter
+
+    FlywayAwareConfig.FlywayConfig flyway
 }

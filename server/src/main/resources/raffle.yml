@@ -8,3 +8,9 @@ twitter:
   consumerSecret:
   accessToken:
   accessTokenSecret:
+
+flyway:
+  migrations:
+    - /migrations
+  schemas:
+    - public

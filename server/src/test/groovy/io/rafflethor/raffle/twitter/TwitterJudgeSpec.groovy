@@ -24,7 +24,7 @@ class TwitterJudgeSpec extends Specification {
         TwitterJudge judge = new TwitterJudge(twitter: twitter)
 
         and: 'a given raffle'
-        TwitterRaffle raffle = Fixtures.twitterRaffle()
+        Raffle raffle = Fixtures.twitterRaffle()
 
         when: 'asking for a list of winners'
         List<RaffleWinner> winnerList = judge.pickWinners(raffle)
