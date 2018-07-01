@@ -8,6 +8,7 @@ class Config implements FlywayAwareConfig {
         String url
         String username
         String password
+        String driverClassName
     }
 
     static class Twitter {

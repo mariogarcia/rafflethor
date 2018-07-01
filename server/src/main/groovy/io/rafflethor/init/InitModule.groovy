@@ -8,8 +8,6 @@ import com.google.inject.multibindings.Multibinder
 class InitModule extends AbstractModule {
     @Override
     protected void configure() {
-        bind(Service).to(FixturesService).in(Scopes.SINGLETON)
-
         Multibinder<Service> servicesBinder = Multibinder.newSetBinder(binder(), Service)
 
         servicesBinder.with {

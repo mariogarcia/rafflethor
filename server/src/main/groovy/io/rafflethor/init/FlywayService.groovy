@@ -7,6 +7,7 @@ import ratpack.service.StartEvent
 
 import javax.inject.Inject
 import javax.sql.DataSource
+import io.rafflethor.config.Config
 
 /**
  * Executes Flyway migration on application's startup

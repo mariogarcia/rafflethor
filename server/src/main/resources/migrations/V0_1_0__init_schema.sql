@@ -1,32 +1,32 @@
-CREATE TABLE events (
+CREATE TABLE IF NOT EXISTS events (
   id UUID,
   name VARCHAR(255),
   description text
 );
 
-CREATE TABLE raffles (
+CREATE TABLE IF NOT EXISTS raffles (
   id UUID,
   name VARCHAR(255),
   noWinners INT,
   type varchar(255),
   payload json,
-  event_id UUID,
+  eventId UUID,
   since timestamp,
   until timestamp
 );
 
-CREATE TABLE winners (
+CREATE TABLE IF NOT EXISTS winners (
   id UUID,
   name VARCHAR(255),
-  raffle_id UUID
+  raffleId UUID
 );
 
-CREATE TABLE users (
+CREATE TABLE IF NOT EXISTS users (
   id UUID,
   username varchar(255)
 );
 
-CREATE TABLE bartolos (
+CREATE TABLE IF NOT EXISTS bartolos (
   id UUID,
   name varchar(255),
   description varchar(255),
