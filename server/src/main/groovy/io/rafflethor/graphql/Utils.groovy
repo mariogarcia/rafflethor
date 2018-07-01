@@ -3,14 +3,20 @@ package io.rafflethor.graphql
 import graphql.TypeResolutionEnvironment
 import graphql.schema.TypeResolver
 
+import io.rafflethor.raffle.Raffle
+
 class Utils {
 
     static TypeResolver raffleTypeResolver() {
         return { TypeResolutionEnvironment env ->
-            Object raffle = env.getObject()
+            Raffle raffle = env.getObject() as Raffle
 
-            return env.schema.getObjectType(raffle.getClass().simpleName)
-
+            switch (raffle.type) {
+                case 'TWITTER':
+                    return env.schema.getObjectType('TwitterRaffle')
+                default:
+                    return env.schema.getObjectType('RandomListRaffle')
+            }
         } as TypeResolver
     }
 }

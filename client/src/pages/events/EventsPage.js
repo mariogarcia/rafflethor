@@ -3,8 +3,12 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { Page, Content } from '../../components/page'
 import MainLayout from '../../layouts/MainLayout'
-import defaultAvatar from '../../layouts/images/avatar/6.jpg'
 import './EventsPage.css'
+
+import {
+    actionCreators as eventsActionCreators,
+    selectors
+} from '../../reducers/dashboard'
 
 /**
  *
@@ -13,7 +17,7 @@ import './EventsPage.css'
 class EventsPage extends React.Component {
 
     componentDidMount () {
-
+        this.props.events()
     }
 
     render () {
@@ -31,4 +35,17 @@ class EventsPage extends React.Component {
     }
 }
 
-export default EventsPage
+const mapDispatchToProps = (dispatch) => ({
+    ...bindActionCreators(eventsA, dispatch)
+})
+
+const mapStateToProps = (state) => {
+    return {
+        stats:  selectors.getStats(state)
+    }
+}
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(EventsPage)

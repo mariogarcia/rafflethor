@@ -5,7 +5,9 @@ import javax.inject.Provider
 
 import gql.DSL
 import graphql.schema.GraphQLSchema
+
 import io.rafflethor.raffle.RaffleService
+import io.rafflethor.event.EventService
 
 /**
  * Provider responsible for creating an instance of {@link GraphQLSchema}
@@ -16,6 +18,9 @@ class SchemaProvider implements Provider<GraphQLSchema> {
 
     @Inject
     RaffleService raffleService
+
+    @Inject
+    EventService eventService
 
     @Override
     GraphQLSchema get() {
@@ -28,6 +33,7 @@ class SchemaProvider implements Provider<GraphQLSchema> {
 
                 mapType('Queries') {
                     link('listAllRaffles', raffleService.&listAllRafflesByUser)
+                    link('listAllEvents', eventService.&listAll)
                     link('pickWinners', raffleService.&pickWinners)
                 }
             }

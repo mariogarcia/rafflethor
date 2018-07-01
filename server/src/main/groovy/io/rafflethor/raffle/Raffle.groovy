@@ -41,4 +41,14 @@ class Raffle {
      * @since 0.1.0
      */
     Map payload
+
+    /**
+     *@ since 0.1.0
+     */
+    Date since
+
+    /**
+     *@ since 0.1.0
+     */
+    Date until
 }

@@ -9,13 +9,14 @@ import io.rafflethor.raffle.Raffle
  */
 interface TwitterRepository {
 
-    static final List<String> FIELDS = ['id', 'name', 'noWinners', 'hashTag', 'until', 'since']
+    static final List<String> FIELDS = ['id', 'name', 'noWinners', 'until', 'since']
 
     /**
      * Lists all twitter raffles
      *
      * @param max maximum number of results
      * @param offset the offset of the result
+     * @return
      * @since 0.1.0
      */
     List<Raffle> listAll(Integer max, Integer offset)

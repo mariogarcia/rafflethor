@@ -20,7 +20,7 @@ class TwitterRepositoryImpl implements TwitterRepository {
     @Override
     List<Raffle> listAll(Integer max, Integer offset) {
         return sql
-            .rows("select * from twitter_raffles", offset, max)
+            .rows("select * from raffles", offset, max)
             .collect(this.&toRaffle)
     }
 
@@ -46,7 +46,7 @@ class TwitterRepositoryImpl implements TwitterRepository {
         String until = raffle.until.format('yyyy-MM-dd hh:mm:ss')
 
         return """
-          INSERT INTO twitter_raffles (id, name, noWinners, hashTag, since, until)
+          INSERT INTO raffles (id, name, noWinners, payload, since, until)
           VALUES (
           '${raffle.id}', '${raffle.name}', ${raffle.noWinners}, '${raffle.hashTag}', '${since}', '${until}'
           )
@@ -54,6 +54,11 @@ class TwitterRepositoryImpl implements TwitterRepository {
     }
 
     private static Raffle toRaffle(GroovyRowResult row) {
-        return new Raffle(row.subMap(FIELDS))
+        String pgObject = row['payload'].value
+        Map payload = new groovy.json.JsonSlurper().parseText(pgObject)
+        Raffle raffle =  new Raffle(row.subMap(FIELDS))
+
+        raffle.payload = payload
+        return raffle
     }
 }

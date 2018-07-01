@@ -10,6 +10,7 @@ import io.rafflethor.graphql.GraphQLExtraModule
 import io.rafflethor.init.InitModule
 import io.rafflethor.raffle.RaffleModule
 import io.rafflethor.raffle.twitter.TwitterModule
+import io.rafflethor.event.EventModule
 import ratpack.groovy.sql.SqlModule
 import ratpack.server.ServerConfigBuilder
 
@@ -28,6 +29,7 @@ ratpack {
         module GraphQLExtraModule
         module TwitterModule
         module RaffleModule
+        module EventModule
     }
 
     handlers {

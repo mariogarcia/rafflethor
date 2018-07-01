@@ -3,6 +3,8 @@ interface Raffle {
   id: String
   # name of the raffle
   name: String
+  # type of the raffle
+  type: String
   # How many winners this raffle has
   noWinners: Int
 }
@@ -14,8 +16,10 @@ type TwitterRaffle implements Raffle {
   name: String
   # How many winners this raffle has
   noWinners: Int
+  # type of the raffle
+  type: String
   # When the raffle begins
-  from: String
+  since: String
   # When the raffle ends
   until: String
   # Users Tweeting with this hashTag are eligible to win
@@ -29,6 +33,8 @@ type RandomListRaffle implements Raffle {
   name: String
   # How many winners this raffle has
   noWinners: Int
+  # type of the raffle
+  type: String
 }
 
 type Winner {
@@ -36,10 +42,19 @@ type Winner {
   name: String
 }
 
+type Event {
+  id: String
+  name: String
+  description: String
+}
+
 # All queries
 type Queries {
   # list all raffles created by the current user
   listAllRaffles(max: Int!, offset: Int!): [Raffle]
+
+  # list all events created by the current user
+  listAllEvents(max: Int!, offset: Int!): [Event]
 
   # list all winners from a given raffle
   pickWinners(raffleId: String): [Winner]
