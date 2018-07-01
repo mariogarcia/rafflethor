@@ -3,6 +3,7 @@ import static ratpack.groovy.Groovy.ratpack
 import gql.ratpack.GraphQLHandler
 import gql.ratpack.GraphQLModule
 import gql.ratpack.GraphiQLHandler
+import io.rafflethor.cors.CorsHandler
 import io.rafflethor.config.Config
 import io.rafflethor.db.DataSourceModule
 import io.rafflethor.graphql.GraphQLExtraModule
@@ -30,6 +31,7 @@ ratpack {
     }
 
     handlers {
+        all(new CorsHandler())
         //all(authenticator(new IndirectBasicAuthClient(registry.get(Authenticator))))
 
         prefix('graphql') {
