@@ -1,15 +1,15 @@
 import { parseError } from './utils'
 
 export default (client) => ({
-    events () {
+    list () {
         const query = `
-        {
-          listAllEvents(max: $max, offset: $offset) {
-            id
-            name
-            description
+          query ListAllEvents($max: Int!, $offset: Int!) {
+            listAllEvents(max: $max, offset: $offset) {
+              id
+              name
+              description
+            }
           }
-        }
         `
         const data = {
             query,
@@ -21,7 +21,7 @@ export default (client) => ({
 
         return client
             .post('', data)
-            .then(resp => resp.data.getIn(['data', 'listEvents']))
+            .then(resp => resp.data.getIn(['data', 'listAllEvents']))
             .catch(parseError)
     }
 })

@@ -4,6 +4,7 @@ import { fromJS } from 'immutable'
 import security from './security'
 import storage from '../storage'
 import dashboard from './dashboard'
+import events from './events'
 
 /**
  * Default http client. Authorization header is calling
@@ -17,7 +18,7 @@ export const client = axios.create({
         'Content-Type': 'application/json',
         'Accept': 'application/json'
     },
-    baseURL: 'http://localhost:8888/graphql',
+    baseURL: 'http://localhost:5050/graphql',
     transformResponse: [ (data) => {
         return fromJS(JSON.parse(data))
     }]
@@ -50,5 +51,6 @@ client.interceptors.request.use(ok, ko)
  */
 export default {
     security: security(client),
-    dashboard: dashboard(client)
+    dashboard: dashboard(client),
+    events: events(client)
 }

@@ -19,6 +19,7 @@ class EventRepositoryImpl implements EventRepository {
     }
 
     private Event toEvent(GroovyRowResult result) {
+        println "=============>$result"
         return new Event(result.subMap(FIELDS))
     }
 }
