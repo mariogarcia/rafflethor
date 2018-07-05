@@ -5,11 +5,12 @@ import security from './security'
 import storage from '../storage'
 import dashboard from './dashboard'
 import events from './events'
+import event from './event'
 
 /**
  * Default http client. Authorization header is calling
  * getToken(). That will only work if the user was already
- * successfully authenticated and there is still the login information
+ * successfully authenticated and there is still the login information,
  * in the local storage.
  */
 
@@ -52,5 +53,6 @@ client.interceptors.request.use(ok, ko)
 export default {
     security: security(client),
     dashboard: dashboard(client),
-    events: events(client)
+    events: events(client),
+    event: event(client)
 }

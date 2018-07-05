@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { Page, Content } from '../../components/page'
 import { Button, Text } from '../../components/input'
-import { actionCreators as eventsActionCreators } from '../../reducers/events'
+import { actionCreators as eventActionCreators } from '../../reducers/event'
 
 import './NewEventPage.css'
 
@@ -48,7 +48,8 @@ class NewEventPage extends React.Component {
      */
     handleClick (event) {
         event.preventDefault()
-        // this.props.addEvent(this.state)
+
+        this.props.newEvent(this.state)
     }
 
     /**
@@ -88,7 +89,16 @@ class NewEventPage extends React.Component {
  * @since 0.1.0
  */
 const mapDispatchToProps = (dispatch) => ({
-    ...bindActionCreators(eventsActionCreators, dispatch)
+    ...bindActionCreators(eventActionCreators, dispatch)
 })
 
-export default connect(mapDispatchToProps)(NewEventPage)
+const mapStateToProps = (state) => {
+    return {
+        event: state
+    }
+}
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(NewEventPage)
