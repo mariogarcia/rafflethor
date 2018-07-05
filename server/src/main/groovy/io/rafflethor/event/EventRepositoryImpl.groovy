@@ -4,9 +4,9 @@ import javax.inject.Inject
 import groovy.sql.GroovyRowResult
 import groovy.sql.Sql
 
-class EventRepositoryImpl implements EventRepository {
+import io.rafflethor.db.Utils
 
-    static final List<String> FIELDS = ['id', 'name', 'description']
+class EventRepositoryImpl implements EventRepository {
 
     @Inject
     Sql sql
@@ -21,5 +21,15 @@ class EventRepositoryImpl implements EventRepository {
     private Event toEvent(GroovyRowResult result) {
         println "=============>$result"
         return new Event(result.subMap(FIELDS))
+    }
+
+    Event save(Event event) {
+        UUID uuid = Utils.generateUUID()
+
+        sql.executeInsert("INSERT INTO events (id, name, description) VALUES (?, ?, ?)",
+                          [uuid, event.name, event.description])
+
+        event.id = uuid
+        return event
     }
 }

@@ -19,4 +19,12 @@ class EventService {
             return eventRepository.listAll(max, offset)
         }
     }
+
+    CompletableFuture<Event> save(DataFetchingEnvironment env) {
+        Event event = new Event(env.arguments.event.subMap(EventRepository.FIELDS))
+
+        return Futures.blocking {
+            return eventRepository.save(event)
+        }
+    }
 }

@@ -5,6 +5,8 @@ package io.rafflethor.event
  */
 interface EventRepository {
 
+    static final List<String> FIELDS = ['id', 'name', 'description']
+
     /**
      * @param max maximum number of results
      * @param offset the offset of the result
@@ -12,4 +14,7 @@ interface EventRepository {
      * @since 0.1.0
      */
     List<Event> listAll(Integer max, Integer offset)
+
+
+    Event save(Event event)
 }
