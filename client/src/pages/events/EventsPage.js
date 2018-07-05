@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { Page, Content } from '../../components/page'
+import { Page, Content, Actions } from '../../components/page'
 import { Card } from '../../components/card/Card'
 import MainLayout from '../../layouts/MainLayout'
 import './EventsPage.css'
@@ -39,6 +39,9 @@ class EventsPage extends React.Component {
         return (
             <MainLayout>
                 <Page title='Events'>
+                    <Actions>
+                        <button type="button" className="btn btn-primary">+</button>
+                    </Actions>
                     <Content>
                         <div className="row">{events}</div>
                     </Content>
