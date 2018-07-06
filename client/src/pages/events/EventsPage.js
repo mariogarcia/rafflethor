@@ -40,7 +40,10 @@ class EventsPage extends React.Component {
             <MainLayout>
                 <Page title='Events'>
                     <Actions>
-                        <button type="button" className="btn btn-primary">+</button>
+                        <button
+                            type="button"
+                            className="btn btn-primary"
+                            onClick={ () => this.props.newEventForm() }>+</button>
                     </Actions>
                     <Content>
                         <div className="row">{events}</div>

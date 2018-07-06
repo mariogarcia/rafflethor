@@ -1,4 +1,5 @@
 import { Map } from 'immutable'
+import { push } from 'react-router-redux'
 
 /**
  * Possible types of action
@@ -45,6 +46,9 @@ const eventsReducer = (state = initialState, action) => {
 }
 
 export const actionCreators = {
+    newEventForm: () => {
+        return push('/events/new')
+    },
     listEvents: () => {
         return { type: actionTypes.EVENTS.LIST.REQUEST }
     },

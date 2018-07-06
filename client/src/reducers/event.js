@@ -46,7 +46,7 @@ const eventReducer = (state = initialState, action) => {
 }
 
 export const actionCreators = {
-    newEvent: (event) => {
+    newEventRequest: (event) => {
         return { type: actionTypes.EVENT.NEW.REQUEST, event }
     },
     newEventSuccess: () => {

@@ -38,7 +38,7 @@ class NewEventPage extends React.Component {
                                 submit
                                 type="button"
                                 value="Add Event"
-                                onClick={(values) => this.props.newEvent(values)} />
+                                onClick={(values) => this.props.newEventRequest(values)} />
                         </Form>
                     </Content>
                 </Page>

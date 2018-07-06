@@ -7,7 +7,7 @@ import http from '../client/http'
  *
  * @since 0.1.0
  */
-export function* saveEvent() {
+export function* saveEventRequest() {
     while (true) {
         const { event } = yield take(actionTypes.EVENT.NEW.REQUEST)
 
@@ -24,5 +24,5 @@ export function* saveEvent() {
 }
 
 export default [
-    fork(saveEvent)
+    fork(saveEventRequest)
 ]
