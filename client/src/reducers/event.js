@@ -47,7 +47,6 @@ const eventReducer = (state = initialState, action) => {
 
 export const actionCreators = {
     newEvent: (event) => {
-        console.log('==============+>')
         return { type: actionTypes.EVENT.NEW.REQUEST, event }
     },
     newEventSuccess: () => {
