@@ -14,7 +14,7 @@ export default (client) => ({
         const data = {
             query,
             variables: {
-                max: 10,
+                max: 100,
                 offset: 1
             }
         }

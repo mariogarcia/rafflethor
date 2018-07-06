@@ -29,7 +29,7 @@ class NewEventPage extends React.Component {
     render () {
         return (
             <MainLayout>
-                <Page title='Create event'>
+                <Page title='New Event'>
                     <Content className="needs-validation">
                         <Form rules={VALIDATION_RULES}>
                             <Text name="name" label="Name"/>

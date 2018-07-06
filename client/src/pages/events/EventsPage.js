@@ -19,17 +19,19 @@ class EventsPage extends React.Component {
     }
 
     render () {
-        const events = this.props.events.map((event) => {
+        console.log(this.props.events)
+        const rows = this.props.events.map((event) => {
+            const id = event.get('id')
             const title = event.get('name')
             const text = event.get('description')
 
             return (
-                <Card
-                    key={event.id}
-                    title={title}
-                    text={text}
-                    detailLink='http://google.es'
-                    deleteLink='http://google.es' />
+                <tr key={id}>
+                    <td scope="row">{id}</td>
+                    <th>{title}</th>
+                    <td>{text}</td>
+                    <td></td>
+                </tr>
             )
         })
 
@@ -40,10 +42,22 @@ class EventsPage extends React.Component {
                         <button
                             type="button"
                             className="btn btn-primary"
-                            onClick={ () => this.props.newEventForm() }>+</button>
+                            onClick={ () => this.props.newEventForm() }>Add New Event</button>
                     </Actions>
                     <Content>
-                        <div className="row">{events}</div>
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th scope="col">ID</th>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Description</th>
+                                    <th scope="col">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                { rows }
+                            </tbody>
+                        </table>
                     </Content>
                 </Page>
             </MainLayout>

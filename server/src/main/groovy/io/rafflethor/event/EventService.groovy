@@ -12,8 +12,8 @@ class EventService {
     EventRepository eventRepository
 
     CompletableFuture<List<Event>> listAll(DataFetchingEnvironment env) {
-        Integer max = 10
-        Integer offset = 1
+        Integer max = env.arguments.max as Integer
+        Integer offset = env.arguments.offset as Integer
 
         return Futures.blocking {
             return eventRepository.listAll(max, offset)
