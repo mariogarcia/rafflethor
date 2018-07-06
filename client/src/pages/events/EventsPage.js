@@ -1,15 +1,12 @@
 import React from 'react'
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
+import MainLayout from '../../layouts/MainLayout'
 import { Page, Content, Actions } from '../../components/page'
 import { Card } from '../../components/card/Card'
-import MainLayout from '../../layouts/MainLayout'
-import './EventsPage.css'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import { actionCreators, selectors } from '../../reducers/events'
 
-import {
-    actionCreators as eventsActionCreators,
-    selectors
-} from '../../reducers/events'
+import './EventsPage.css'
 
 /**
  *
@@ -55,7 +52,7 @@ class EventsPage extends React.Component {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-    ...bindActionCreators(eventsActionCreators, dispatch)
+    ...bindActionCreators(actionCreators, dispatch)
 })
 
 const mapStateToProps = (state) => {

@@ -1,5 +1,6 @@
-import { put, call, take, fork, takeLatest } from 'redux-saga/effects'
+import { put, call, take, fork } from 'redux-saga/effects'
 import { actionCreators, actionTypes } from '../reducers/event'
+import { push } from 'react-router-redux'
 import http from '../client/http'
 
 /**
@@ -15,6 +16,7 @@ export function* saveEventRequest() {
             try {
                 yield call(http.event.save, event)
                 yield put(actionCreators.newEventSuccess())
+                yield put(push('/events'))
             } catch (e) {
                 console.error(e)
                 yield put(actionCreators.newEventFailure(e))
