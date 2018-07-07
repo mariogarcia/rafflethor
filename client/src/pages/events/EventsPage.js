@@ -1,7 +1,7 @@
 import React from 'react'
 import MainLayout from '../../layouts/MainLayout'
 import { Page, Content, Actions } from '../../components/page'
-import { Card } from '../../components/card/Card'
+import { Table, Column } from '../../components/table'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { actionCreators, selectors } from '../../reducers/events'
@@ -19,22 +19,6 @@ class EventsPage extends React.Component {
     }
 
     render () {
-        console.log(this.props.events)
-        const rows = this.props.events.map((event) => {
-            const id = event.get('id')
-            const title = event.get('name')
-            const text = event.get('description')
-
-            return (
-                <tr key={id}>
-                    <td scope="row">{id}</td>
-                    <th>{title}</th>
-                    <td>{text}</td>
-                    <td></td>
-                </tr>
-            )
-        })
-
         return (
             <MainLayout>
                 <Page title='Events'>
@@ -45,19 +29,12 @@ class EventsPage extends React.Component {
                             onClick={ () => this.props.newEventForm() }>Add New Event</button>
                     </Actions>
                     <Content>
-                        <table class="table table-striped">
-                            <thead>
-                                <tr>
-                                    <th scope="col">ID</th>
-                                    <th scope="col">Name</th>
-                                    <th scope="col">Description</th>
-                                    <th scope="col">Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                { rows }
-                            </tbody>
-                        </table>
+                        <Table rows={this.props.events} >
+                            <Column value="id" head="ID" />
+                            <Column value="name" head="Name" />
+                            <Column value="description" head="Description" />
+                            <Column value="actions" head="Actions" />
+                        </Table>
                     </Content>
                 </Page>
             </MainLayout>

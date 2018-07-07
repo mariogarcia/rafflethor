@@ -1,13 +1,14 @@
 import React from 'react'
 import MainLayout from '../../layouts/MainLayout'
 import { Page, Content } from '../../components/page'
-import { Table, Row, Column } from '../../components/table'
+import { Table, Column } from '../../components/table'
 
 import './RafflesPage.css'
 
 const raffleList = [
     { id: "1", name:"Greach T-Shirt" },
-    { id: "2", name:"Alexa giveaway" }
+    { id: "2", name:"Alexa giveaway" },
+    { id: "3", name:"Micronaut Mud" }
 ]
 
 /**
@@ -16,10 +17,6 @@ const raffleList = [
  */
 class RafflesPage extends React.Component {
 
-    componentDidMount () {
-
-    }
-
     render () {
         return (
             <MainLayout>
@@ -27,10 +24,9 @@ class RafflesPage extends React.Component {
                     <Content>
                         <div className="row">
                             <Table rows={raffleList}>
-                                <Row>
-                                    <Column name="id" />
-                                    <Column name="name" />
-                                </Row>
+                                <Column value="id" head="ID"/>
+                                <Column value="name" head="Name"/>
+                                <Column value="description" head="Description"/>
                             </Table>
                         </div>
                     </Content>

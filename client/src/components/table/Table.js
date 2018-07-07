@@ -2,19 +2,34 @@ import React from 'react'
 
 export class Table extends React.Component {
 
-    constructor(props) {
-        super(props)
+    renderRow (row, column, index) {
+        return (React.cloneElement(column, {...column.props, row: row, key: `${row.get('id')}-${index}`}))
     }
 
-    handleRowElement (rowElement) {
-        return (React.cloneElement(rowElement, {rows:this.props.rows, ...rowElement.props}))
+    renderHeader (column, index) {
+        return (
+            <th key={`${column.props.head}-${index}`}>{column.props.head}</th>
+        )
+    }
+
+    renderRows (rows, columns) {
+        return rows.map((row) => (
+            <tr key={row.get('id')} className={this.props.rowClassName}>
+                { columns.map((column, index) => this.renderRow(row, column, index)) }
+            </tr>
+        ))
     }
 
     render () {
         return (
             <table className={`table table-striped ${this.props.className}`}>
+                <thead>
+                    <tr>
+                        { this.props.children.map((column, index) => this.renderHeader(column, index)) }
+                    </tr>
+                </thead>
                 <tbody>
-                    { (this.handleRowElement(this.props.children)) }
+                    { (this.renderRows(this.props.rows, this.props.children)) }
                 </tbody>
             </table>
         )
