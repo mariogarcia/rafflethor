@@ -1,5 +1,7 @@
 import React from 'react'
 
+import './Table.css'
+
 export class Table extends React.Component {
 
     renderRow (row, column, index) {
