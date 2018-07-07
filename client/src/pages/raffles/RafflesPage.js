@@ -30,7 +30,9 @@ class RafflesPage extends React.Component {
                     </Actions>
                     <Content>
                         <div className="row">
-                            <Table rows={this.props.raffles}>
+                            <Table
+                                onClick={(row) => console.log('raffle: ', row)}
+                                rows={this.props.raffles}>
                                 <Column value="id" head="ID"/>
                                 <Column value="name" head="Name"/>
                                 <Column value="noWinners" head="No Winners"/>

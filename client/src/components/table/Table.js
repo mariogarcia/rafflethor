@@ -14,9 +14,11 @@ export class Table extends React.Component {
         )
     }
 
-    renderRows (rows, columns) {
+    renderRows (rows, columns, onClick) {
+        const fn = onClick || function () {}
+
         return rows.map((row) => (
-            <tr key={row.get('id')} className={this.props.rowClassName}>
+            <tr key={row.get('id')} onClick={() => fn(row) } className={this.props.rowClassName}>
                 { columns.map((column, index) => this.renderRow(row, column, index)) }
             </tr>
         ))
@@ -31,7 +33,7 @@ export class Table extends React.Component {
                     </tr>
                 </thead>
                 <tbody>
-                    { (this.renderRows(this.props.rows, this.props.children)) }
+                    { (this.renderRows(this.props.rows, this.props.children, this.props.onClick)) }
                 </tbody>
             </table>
         )

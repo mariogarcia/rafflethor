@@ -29,7 +29,9 @@ class EventsPage extends React.Component {
                             onClick={ () => this.props.newEventForm() }>Add New Event</button>
                     </Actions>
                     <Content>
-                        <Table rows={this.props.events} >
+                        <Table
+                            onClick={(row) => console.log(row)}
+                            rows={this.props.events} >
                             <Column value="id" head="ID" />
                             <Column value="name" head="Name" />
                             <Column value="description" head="Description" />

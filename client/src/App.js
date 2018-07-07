@@ -5,6 +5,7 @@ import { LocalStorage } from './client/storage/LocalStorage'
 import LoginPage from './pages/login/LoginPage'
 import EventsPage from './pages/events/EventsPage'
 import NewEventPage from './pages/events/NewEventPage'
+import EditEventPage from './pages/events/EditEventPage'
 import RafflesPage from './pages/raffles/RafflesPage'
 import UsersPage from './pages/users/UsersPage'
 import BartolosPage from './pages/bartolos/BartolosPage'
@@ -24,6 +25,7 @@ class App extends Component {
               <Route exact path='/' component={DashboardPage} />
               <Route exact path='/events' component={EventsPage} />
               <Route path='/events/new' component={NewEventPage} />
+              <Route path='/events/edit' component={EditEventPage} />
               <Route path='/raffles' component={RafflesPage} />
               <Route path='/users' component={UsersPage} />
               <Route path='/bartolos' component={BartolosPage} />
