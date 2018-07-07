@@ -33,7 +33,6 @@ class EventsPage extends React.Component {
                             <Column value="id" head="ID" />
                             <Column value="name" head="Name" />
                             <Column value="description" head="Description" />
-                            <Column value="actions" head="Actions" />
                         </Table>
                     </Content>
                 </Page>

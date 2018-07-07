@@ -13,23 +13,27 @@ CREATE TABLE IF NOT EXISTS raffles (
   payload json,
   eventId UUID,
   since timestamp,
-  until timestamp
+  until timestamp,
+  createdAt timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE IF NOT EXISTS winners (
   id UUID,
   name VARCHAR(255),
-  raffleId UUID
+  raffleId UUID,
+  createdAt timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE IF NOT EXISTS users (
   id UUID,
-  username varchar(255)
+  username varchar(255),
+  createdAt timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE IF NOT EXISTS bartolos (
   id UUID,
   name varchar(255),
   description varchar(255),
-  status varchar(255)
+  status varchar(255),
+  createdAt timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 )

@@ -9,7 +9,7 @@ import io.rafflethor.raffle.Raffle
  */
 interface TwitterRepository {
 
-    static final List<String> FIELDS = ['id', 'name', 'noWinners', 'until', 'since']
+    static final List<String> FIELDS = ['id', 'name', 'noWinners', 'type', 'until', 'since']
 
     /**
      * Lists all twitter raffles

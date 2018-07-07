@@ -20,7 +20,7 @@ class TwitterRepositoryImpl implements TwitterRepository {
     @Override
     List<Raffle> listAll(Integer max, Integer offset) {
         return sql
-            .rows("select * from raffles", offset, max)
+            .rows("select * from raffles ORDER BY createdAt DESC", offset, max)
             .collect(this.&toRaffle)
     }
 
