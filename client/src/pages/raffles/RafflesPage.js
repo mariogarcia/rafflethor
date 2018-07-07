@@ -1,10 +1,14 @@
 import React from 'react'
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
-import { Page, Content } from '../../components/page'
 import MainLayout from '../../layouts/MainLayout'
-import defaultAvatar from '../../layouts/images/avatar/6.jpg'
+import { Page, Content } from '../../components/page'
+import { Table, Row, Column } from '../../components/table'
+
 import './RafflesPage.css'
+
+const raffleList = [
+    { id: "1", name:"Greach T-Shirt" },
+    { id: "2", name:"Alexa giveaway" }
+]
 
 /**
  *
@@ -21,9 +25,14 @@ class RafflesPage extends React.Component {
             <MainLayout>
                 <Page title='Raffles'>
                     <Content>
-                <div className="row">
-                raffles
-                      </div>
+                        <div className="row">
+                            <Table rows={raffleList}>
+                                <Row>
+                                    <Column name="id" />
+                                    <Column name="name" />
+                                </Row>
+                            </Table>
+                        </div>
                     </Content>
                 </Page>
             </MainLayout>

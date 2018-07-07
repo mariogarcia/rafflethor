@@ -14,12 +14,11 @@ class EventRepositoryImpl implements EventRepository {
     @Override
     List<Event> listAll(Integer max, Integer offset) {
         return sql
-            .rows('SELECT * FROM events', offset, max)
+            .rows('SELECT * FROM events ORDER BY createdAt DESC', offset, max)
             .collect(this.&toEvent)
     }
 
     private Event toEvent(GroovyRowResult result) {
-        println "=============>$result"
         return new Event(result.subMap(FIELDS))
     }
 

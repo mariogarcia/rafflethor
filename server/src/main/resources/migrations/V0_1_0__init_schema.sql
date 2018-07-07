@@ -1,7 +1,8 @@
 CREATE TABLE IF NOT EXISTS events (
   id UUID,
   name VARCHAR(255),
-  description text
+  description text,
+  createdAt timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE IF NOT EXISTS raffles (
