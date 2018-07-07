@@ -1,4 +1,4 @@
-import { Map } from 'immutable'
+import { List, Map } from 'immutable'
 import { push } from 'react-router-redux'
 
 /**
@@ -20,7 +20,7 @@ export const actionTypes = {
 export const initialState = Map({
     isLoading: false,
     error: null,
-    events: []
+    events: List()
 })
 
 /**
@@ -38,7 +38,7 @@ const eventsReducer = (state = initialState, action) => {
         case actionTypes.EVENTS.LIST.FAILURE:
             return state
                 .set('isLoading', false)
-                .set('events', action.error)
+                .set('error', action.error)
 
         default:
             return state

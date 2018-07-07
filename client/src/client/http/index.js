@@ -1,3 +1,4 @@
+
 import axios from 'axios'
 import { fromJS } from 'immutable'
 
@@ -6,6 +7,7 @@ import storage from '../storage'
 import dashboard from './dashboard'
 import events from './events'
 import event from './event'
+import raffles from './raffles'
 
 /**
  * Default http client. Authorization header is calling
@@ -54,5 +56,6 @@ export default {
     security: security(client),
     dashboard: dashboard(client),
     events: events(client),
-    event: event(client)
+    event: event(client),
+    raffles: raffles(client)
 }
