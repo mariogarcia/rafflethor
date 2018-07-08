@@ -5,6 +5,7 @@ import java.sql.Timestamp
 import groovy.sql.BatchingStatementWrapper
 import groovy.sql.GroovyRowResult
 import groovy.sql.Sql
+import io.rafflethor.raffle.Raffle
 
 /**
  * Repository to get raffles of twitter nature
@@ -17,14 +18,14 @@ class TwitterRepositoryImpl implements TwitterRepository {
     Sql sql
 
     @Override
-    List<TwitterRaffle> listAll(Integer max, Integer offset) {
+    List<Raffle> listAll(Integer max, Integer offset) {
         return sql
-            .rows("select * from twitter_raffles", offset, max)
+            .rows("select * from raffles ORDER BY createdAt DESC", offset, max)
             .collect(this.&toRaffle)
     }
 
     @Override
-    TwitterRaffle findById(UUID id) {
+    Raffle findById(UUID id) {
         return sql
             .rows("select * from twitter_raffles where id = :id", id: id)
             .collect(this.&toRaffle)
@@ -32,27 +33,32 @@ class TwitterRepositoryImpl implements TwitterRepository {
     }
 
     @Override
-    void saveBatch(List<TwitterRaffle> raffles) {
+    void saveBatch(List<Raffle> raffles) {
         sql.withBatch(10) { BatchingStatementWrapper stmt ->
-            raffles.each { TwitterRaffle raffle ->
-                stmt.addBatch(buildTwitterRaffleQuery(raffle))
+            raffles.each { Raffle raffle ->
+                stmt.addBatch(buildRaffleQuery(raffle))
             }
         }
     }
 
-    private static String buildTwitterRaffleQuery(TwitterRaffle raffle) {
+    private static String buildRaffleQuery(Raffle raffle) {
         String since = raffle.since.format('yyyy-MM-dd hh:mm:ss')
         String until = raffle.until.format('yyyy-MM-dd hh:mm:ss')
 
         return """
-          INSERT INTO twitter_raffles (id, name, noWinners, hashTag, since, until) 
+          INSERT INTO raffles (id, name, noWinners, payload, since, until)
           VALUES (
           '${raffle.id}', '${raffle.name}', ${raffle.noWinners}, '${raffle.hashTag}', '${since}', '${until}'
           )
         """
     }
 
-    private static TwitterRaffle toRaffle(GroovyRowResult row) {
-        return new TwitterRaffle(row.subMap(FIELDS))
+    private static Raffle toRaffle(GroovyRowResult row) {
+        String pgObject = row['payload'].value
+        Map payload = new groovy.json.JsonSlurper().parseText(pgObject)
+        Raffle raffle =  new Raffle(row.subMap(FIELDS))
+
+        raffle.payload = payload
+        return raffle
     }
 }

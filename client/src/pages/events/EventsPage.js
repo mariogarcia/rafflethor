@@ -1,9 +1,11 @@
 import React from 'react'
+import MainLayout from '../../layouts/MainLayout'
+import { Page, Content, Actions } from '../../components/page'
+import { Table, Column } from '../../components/table'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { Page, Content } from '../../components/page'
-import MainLayout from '../../layouts/MainLayout'
-import defaultAvatar from '../../layouts/images/avatar/6.jpg'
+import { actionCreators, selectors } from '../../reducers/events'
+
 import './EventsPage.css'
 
 /**
@@ -13,17 +15,27 @@ import './EventsPage.css'
 class EventsPage extends React.Component {
 
     componentDidMount () {
-
+        this.props.listEvents()
     }
 
     render () {
         return (
             <MainLayout>
                 <Page title='Events'>
+                    <Actions>
+                        <button
+                            type="button"
+                            className="btn btn-primary"
+                            onClick={ () => this.props.newEventForm() }>Add New Event</button>
+                    </Actions>
                     <Content>
-                        <div className="row">
-                            events
-                        </div>
+                        <Table
+                            onClick={(row) => console.log(row)}
+                            rows={this.props.events} >
+                            <Column value="id" head="ID" />
+                            <Column value="name" head="Name" />
+                            <Column value="description" head="Description" />
+                        </Table>
                     </Content>
                 </Page>
             </MainLayout>
@@ -31,4 +43,17 @@ class EventsPage extends React.Component {
     }
 }
 
-export default EventsPage
+const mapDispatchToProps = (dispatch) => ({
+    ...bindActionCreators(actionCreators, dispatch)
+})
+
+const mapStateToProps = (state) => {
+    return {
+        events:  selectors.getEvents(state)
+    }
+}
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(EventsPage)

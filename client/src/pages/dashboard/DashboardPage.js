@@ -7,7 +7,7 @@ import {
     selectors
 } from '../../reducers/dashboard'
 import MainLayout from '../../layouts/MainLayout'
-import defaultAvatar from '../../layouts/images/avatar/6.jpg'
+// import defaultAvatar from '../../layouts/images/avatar/6.jpg'
 import { CounterPanel } from './panels/CounterPanel'
 import './DashboardPage.css'
 

@@ -1,7 +1,6 @@
 package io.rafflethor.raffle.test
 
 import graphql.schema.DataFetchingEnvironment
-import io.rafflethor.raffle.twitter.TwitterRaffle
 import org.pac4j.core.profile.UserProfile
 import ratpack.handling.Context
 import twitter4j.QueryResult
@@ -35,25 +34,29 @@ class Fixtures {
         return userProfile
     }
 
-    static TwitterRaffle twitterRaffle() {
-        return new TwitterRaffle(
-                id: UUID.randomUUID(),
-                name: 'anyconference t-shirt',
-                noWinners: 2,
+    static Raffle twitterRaffle() {
+        return new Raffle(
+            id: UUID.randomUUID(),
+            name: 'anyconference t-shirt',
+            noWinners: 2,
+            payload: [
                 since: new Date(),
                 until: new Date(),
                 hashTag: "#hashTag"
+            ]
         )
     }
 
-    static List<TwitterRaffle> twitterRaffleList() {
-        return [new TwitterRaffle(
+    static List<Raffle> twitterRaffleList() {
+        return [new Raffle(
                 id: UUID.randomUUID(),
                 name: 'anyconference t-shirt',
                 noWinners: 2,
-                since: new Date(),
-                until: new Date(),
-                hashTag: "#hashTag"
+                payload: [
+                    since: new Date(),
+                    until: new Date(),
+                    hashTag: "#hashTag"
+                ]
         )]
     }
 

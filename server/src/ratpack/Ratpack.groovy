@@ -3,12 +3,14 @@ import static ratpack.groovy.Groovy.ratpack
 import gql.ratpack.GraphQLHandler
 import gql.ratpack.GraphQLModule
 import gql.ratpack.GraphiQLHandler
+import io.rafflethor.cors.CorsHandler
 import io.rafflethor.config.Config
 import io.rafflethor.db.DataSourceModule
 import io.rafflethor.graphql.GraphQLExtraModule
 import io.rafflethor.init.InitModule
 import io.rafflethor.raffle.RaffleModule
 import io.rafflethor.raffle.twitter.TwitterModule
+import io.rafflethor.event.EventModule
 import ratpack.groovy.sql.SqlModule
 import ratpack.server.ServerConfigBuilder
 
@@ -27,9 +29,11 @@ ratpack {
         module GraphQLExtraModule
         module TwitterModule
         module RaffleModule
+        module EventModule
     }
 
     handlers {
+        all(new CorsHandler())
         //all(authenticator(new IndirectBasicAuthClient(registry.get(Authenticator))))
 
         prefix('graphql') {

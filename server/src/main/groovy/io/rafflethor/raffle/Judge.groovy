@@ -5,7 +5,7 @@ package io.rafflethor.raffle
  *
  * @since 0.1.0
  */
-interface Judge<T extends Raffle> {
+interface Judge {
 
     /**
      * Picks a list of winners from the information present
@@ -15,5 +15,5 @@ interface Judge<T extends Raffle> {
      * @return a list of winners
      * @since 0.1.0
      */
-    List<RaffleWinner> pickWinners(T raffle)
+    List<RaffleWinner> pickWinners(Raffle raffle)
 }

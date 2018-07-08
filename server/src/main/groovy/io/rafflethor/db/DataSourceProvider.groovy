@@ -1,11 +1,12 @@
 package io.rafflethor.db
 
-import javax.inject.Inject
-import javax.inject.Provider
-import javax.sql.DataSource
-
+import com.google.inject.Provider
+import com.zaxxer.hikari.HikariConfig
+import com.zaxxer.hikari.HikariDataSource
 import io.rafflethor.config.Config
-import org.h2.jdbcx.JdbcDataSource
+
+import javax.inject.Inject
+import javax.sql.DataSource
 
 class DataSourceProvider implements Provider<DataSource> {
 
@@ -14,10 +15,13 @@ class DataSourceProvider implements Provider<DataSource> {
 
     @Override
     DataSource get() {
-        return new JdbcDataSource(
-            URL: config.database.url,
-            user: config.database.username,
-            password: config.database.password
-        )
+        def hikariConfig = new HikariConfig()
+
+        hikariConfig.driverClassName = config.database.driverClassName
+        hikariConfig.jdbcUrl = config.database.url
+        hikariConfig.username = config.database.username
+        hikariConfig.password = config.database.password
+
+        return new HikariDataSource(hikariConfig)
     }
 }

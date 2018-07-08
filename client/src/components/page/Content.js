@@ -1,9 +1,9 @@
 import React from 'react'
 
-const Content = (props) => (
-    <div className="row">
+const Content = ({children, ...props}) => (
+    <div className={`row ${props.className}`}>
         <div className="col-12">
-            {props.children}
+            {children}
         </div>
     </div>
 )
